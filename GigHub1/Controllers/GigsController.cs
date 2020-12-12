@@ -19,6 +19,7 @@ namespace GigHub1.Controllers
         }
         // GET: Gigs
         [Authorize]
+
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel
@@ -31,6 +32,7 @@ namespace GigHub1.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(GigFormViewModel viewModel)
         {
 
