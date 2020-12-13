@@ -4,6 +4,7 @@
 }
 
 <h2>Add a Gig</h2>
+<p class="alert alert-info">All fields are <strong>required</strong></p>
 
 @using (Html.BeginForm("Create", "Gigs"))
 {
@@ -17,13 +18,13 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Date, new { @class = "form-label" })
-        @Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", @placeholder = "eg 1 Jan 2021" })
         @Html.ValidationMessageFor(m => m.Date)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Time, new { @class = "form-label" })
-        @Html.TextBoxFor(m => m.Time, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Time, new { @class = "form-control", @placeholder = "20:00" })
         @Html.ValidationMessageFor(m => m.Time)
     </div>
 
