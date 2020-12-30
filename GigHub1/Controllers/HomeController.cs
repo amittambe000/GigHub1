@@ -6,12 +6,15 @@ using System.Web;
 using System.Web.Mvc;
 using System;
 using GigHub1.ViewModel;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace GigHub1.Controllers
 {
     public class HomeController : Controller
     {
         private ApplicationDbContext _context;
+
         public HomeController()
         {
             _context = new ApplicationDbContext();
@@ -19,9 +22,11 @@ namespace GigHub1.Controllers
         public ActionResult Index()
         {
             var upcomingGigs = _context.Gigs
-                .Include(g => g.Artist)
                 .Include(g => g.Genre)
+                .Include(g => g.Artist)
                 .Where(g => g.DateTime > DateTime.Now);
+
+
 
             var viewModel = new GigsViewModel
             {
@@ -32,6 +37,19 @@ namespace GigHub1.Controllers
             };
 
             return View("Gigs", viewModel);
+        }
+
+        [Authorize]
+        public ActionResult FollowingArtist()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var artists = _context.Followings.Where(f => f.FollowerId == userId).Select(f => f.Followee).ToList();
+
+            // var ApplicationUser = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(userId);
+            // var artist = ApplicationUser.Followees;
+            return View("FollowingArtist", artists);
+
         }
 
         public ActionResult About()

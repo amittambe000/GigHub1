@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace GigHub1.Controllers
 {
@@ -32,6 +33,19 @@ namespace GigHub1.Controllers
         }
 
         [Authorize]
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Gigs
+                .Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now)
+                .Include(g => g.Genre)
+                .ToList();
+
+            return View(gigs);
+
+        }
+
+        [Authorize]
         public ActionResult Attending()
         {
             var userId = User.Identity.GetUserId();
@@ -51,6 +65,7 @@ namespace GigHub1.Controllers
 
             return View("Gigs", viewModel);
         }
+
 
         [Authorize]
         [HttpPost]
@@ -76,7 +91,7 @@ namespace GigHub1.Controllers
             _context.Gigs.Add(gig);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Gigs");
 
         }
 

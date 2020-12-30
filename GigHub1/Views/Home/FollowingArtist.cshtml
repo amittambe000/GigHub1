@@ -1,0 +1,17 @@
+﻿@model ICollection<GigHub1.Models.ApplicationUser>
+@{
+    /**/
+
+    ViewBag.Title = "FollowingArtist";
+}
+
+<h2>Following Artist</h2>
+
+<ul class="list-group voffset4">
+    @foreach (var artist in Model)
+    {
+
+        <li class="list-group-item">@artist.Name</li>
+    }
+
+</ul>

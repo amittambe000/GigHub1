@@ -30,6 +30,8 @@ namespace GigHub1.Models
         {
             Followers = new Collection<Following>();
             Followees = new Collection<Following>();
+
         }
+
     }
 }
