@@ -157,3 +157,12 @@ body {
                 font-size: 20px;
                 padding: 6px 12px;
             }
+
+        .gigs > li .actions {
+            font-size: 15px;
+            display: none;
+        }
+
+        .gigs > li:hover .actions {
+            display: block;
+        }
