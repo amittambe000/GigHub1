@@ -4,6 +4,18 @@
 }
 
 <h1>@Model.Heading</h1>
+@using (Html.BeginForm("Search", "Gigs"))
+{
+    <div class="form-group">
+        <div id="searchGigs" class="input-group mb-3 searchGigs">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control" })
+            <span class="input-group-addon" id="basic-addon2">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    </div>
+
+}
 <ul class="gigs voffset4">
     @foreach (var gig in Model.UpcommingGigs)
     {

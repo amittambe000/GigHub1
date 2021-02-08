@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using GigHub1.App_Start;
+using GigHub1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +21,8 @@ namespace GigHub1
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfig.Init();
+
         }
     }
 }

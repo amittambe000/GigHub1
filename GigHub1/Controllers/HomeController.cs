@@ -19,12 +19,23 @@ namespace GigHub1.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
+
             var upcomingGigs = _context.Gigs
                 .Include(g => g.Genre)
                 .Include(g => g.Artist)
                 .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                upcomingGigs = upcomingGigs
+                    .Where(g => g.Artist.Name.Contains(query) ||
+                    g.Genre.Name.Contains(query) ||
+                    g.Venue.Contains(query));
+
+
+            }
 
 
 
@@ -32,7 +43,8 @@ namespace GigHub1.Controllers
             {
                 UpcommingGigs = upcomingGigs,
                 ShowActions = User.Identity.IsAuthenticated,
-                Heading = "Upcoming Gigs"
+                Heading = "Upcoming Gigs",
+                SearchTerm = query
 
             };
 

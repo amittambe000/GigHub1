@@ -77,6 +77,17 @@ body {
         background-color: #fb23226b;
     }
 
+    .navbar-inverse .notifications {
+        position: relative;
+    }
+
+        .navbar-inverse .notifications .badge {
+            position: absolute;
+            top: 8px;
+            right: -1px;
+            background: #a80a0a
+        }
+
 .dropdown-menu {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -166,3 +177,31 @@ body {
         .gigs > li:hover .actions {
             display: block;
         }
+
+ul.notifications {
+    list-style: none;
+    padding-left: 0;
+}
+
+    ul.notifications > li {
+        list-style: none;
+        padding-left: 0;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+    }
+
+        ul.notifications > li:last-child {
+            border-bottom: none;
+        }
+
+.popover-notifications .popover-body {
+    padding: 0;
+}
+
+.highlight {
+    f ont-weight: bold;
+}
+
+.searchGigs {
+    width: 300px;
+}
